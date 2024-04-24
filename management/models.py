@@ -77,7 +77,7 @@ class Template3(models.Model):
     
 class Template4(models.Model):
     templatename = models.CharField(max_length=255,blank=True, null=True)
-    banner =  models.ImageField(null=True, upload_to="template5/",)
+    banner =  models.ImageField(null=True, upload_to="template4/",)
     title = models.CharField(max_length=255,blank=True, null=True)
     deartext = models.TextField(blank=True, null=True)
     email = models.TextField(blank=True, null=True)
@@ -90,8 +90,8 @@ class Template4(models.Model):
     def __str__(self):
         return self.templatename
     
-class paragraphtemplate4(models.Model):
-    template4 = models.ForeignKey(Template4,null=True,blank=True,on_delete=models.CASCADE,related_name="template4_paragraph")
+class Paragraphtemplate4(models.Model):
+    template4 = models.ForeignKey(Template4,null=True,blank=True,on_delete=models.CASCADE,related_name="template4_paragraph_text")
     parapgrah = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
