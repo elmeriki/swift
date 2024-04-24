@@ -1,0 +1,9 @@
+pip install pandas django
+pip install twilio
+pip install mailjet-rest
+pip install random-id
+pip install django==3.1.4
+pip install pymysql
+pip install openpyxl --upgrade --pre
+celery -A Swiftsend worker -l info 
+celery -A Swiftsend beat -l info 
