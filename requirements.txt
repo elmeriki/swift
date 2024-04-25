@@ -8,7 +8,7 @@ pip install openpyxl --upgrade --pre
 pip install python-decouple
 pip install pillow==2
 
-celery -A Swiftsend worker -l info 
+celery -A Swiftsend worker -l info &
 celery -A Swiftsend beat -l info 
 
 

@@ -519,7 +519,7 @@ def preview_draft_template4(request,id):
         data = {
             'template_instance':template_instance,
             'company_instance':company_instance,
-            'template4_paragraph':paragraphtemplate4.objects.filter(template4=template_instance)
+            'template4_paragraph':Paragraphtemplate4.objects.filter(template4=template_instance)
 
         }
         return render(request,'temp/templates4_design.html',context=data)
@@ -810,7 +810,7 @@ def paragraph_template4(request,id):
         data = {
             'list_of_all_users':list_of_all_users,
             'id':id,
-            'paragraph':paragraphtemplate4.objects.filter(template4=template_4_instance)
+            'paragraph':Paragraphtemplate4.objects.filter(template4=template_4_instance)
         }
         return render(request,'temp/customise_add_paragraph.html',context=data)
     
@@ -861,7 +861,7 @@ def save_paragraph_template4(request,id):
     if request.user.is_authenticated and request.user.is_admin and request.method=="POST":
         parapgrah = request.POST['parapgrah']
         template_4_instance = Template4.objects.get(id=id)
-        save_paragraph_template4=paragraphtemplate4(template4=template_4_instance,parapgrah=parapgrah)
+        save_paragraph_template4=Paragraphtemplate4(template4=template_4_instance,parapgrah=parapgrah)
         save_paragraph_template4.save()
         return redirect(f'/paragraph_template4/{id}')
     else:
@@ -889,7 +889,7 @@ def delete_template2_listView(request,id):
 @login_required(login_url='/')  
 def delete_template4_paragraphView(request,id):
     if request.user.is_authenticated and request.user.is_admin:
-        delete_template4_single_line_paragraph =paragraphtemplate4.objects.get(id=id).delete()
+        delete_template4_single_line_paragraph =Paragraphtemplate4.objects.get(id=id).delete()
         if delete_template4_single_line_paragraph:
             return redirect('/template4_draft')
     else:

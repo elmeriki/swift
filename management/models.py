@@ -54,7 +54,7 @@ class Listtemplate2(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.template1.templatename
+        return self.template2.templatename
     
     
 class Template3(models.Model):
@@ -73,6 +73,8 @@ class Template3(models.Model):
     status =models.BooleanField(blank=True,null=True,default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return self.templatename   
     
     
 class Template4(models.Model):
