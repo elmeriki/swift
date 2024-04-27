@@ -34,6 +34,8 @@ from requests.auth import HTTPBasicAuth
 from mailjet_rest import Client
 from django.http import HttpRequest
 basic = HTTPBasicAuth(settings.API_KEY,settings.API_SECRET)
+from django.template.loader import render_to_string
+
 
 api_key ='872d27df7562262acdeab75013e79b95'
 api_secret ='a2b6bc70877ac1e8880d2694256cae4c'
@@ -47,6 +49,14 @@ def send_bulk_emails_task(subject, message,introtext,greetings,companu_instance_
     users = User.objects.filter(is_customer=True)
     for user in users:
         try:
+            email_data = {
+            'admin_instance':User.objects.get(username=companu_instance_name),
+            'user_instance':User.objects.get(username=user.username),
+            'introtext':introtext,
+            'greetings':greetings,
+            'message':message,
+            }
+            html_content =render_to_string('temp/template_basic.html', context=email_data)
             mailjet = Client(auth=(api_key, api_secret), version='v3.1')
             data = {
             'Messages': [
@@ -63,24 +73,7 @@ def send_bulk_emails_task(subject, message,introtext,greetings,companu_instance_
                     ],
                 "Subject": subject,
                                 # "TextPart": "Greetings from Mailjet!",
-                "HTMLPart":
-                f"""
-                <p><a href='{{admin_instance.website}}'><img src="{{admin_instance.logo.url}}" height='60px'></a> <br><br> <strong>{greetings} {user.first_name} </strong> <br><br> 
-                {introtext}.<br>
-                <br>
-                {message}.<br>
-                <br>
-                
-                <br>Best Regards<br> 
-                <strong>{admin_instance.companyname}</strong>
-                <br>Email:{admin_instance.email}
-                <br>Head Office:{admin_instance.address}
-                <br>Com Reg:{admin_instance.reg} | Tax No:{admin_instance.tax}
-                <br>Whatsapp:{admin_instance.whatsapp} | Landline:{admin_instance.phone} | Mobile:{admin_instance.phone}
-                <br>Website:{admin_instance.website}
-                <hr>
-                <strong>Copytighy © 2024 {admin_instance.companyname} All Right Reserved</strong>
-                </p>"""}]}
+                "HTMLPart":html_content}]}
             mailjet.send.create(data=data)
             # Save record in database for each email sent
             email_sent_instance=Messagescontent.objects.get(id=unique_badge_id)

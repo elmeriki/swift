@@ -56,6 +56,7 @@ def send_bulk_template1_emails_task(id,company_username):
             'template_instance':template_instance,
             'template1_product_list':Product.objects.filter(template1=template_instance)
             }
+            
             html_content =render_to_string('temp/templates1_design.html', context=email_data)
             mailjet = Client(auth=(api_key,api_secret), version='v3.1')
             data = {

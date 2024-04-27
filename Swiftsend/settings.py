@@ -17,9 +17,9 @@ API_KEY='8ca9d831-bf94-4f52-a1f7-5ca10383f4c0'
 API_SECRET ='tOSj12UTwL1ZBjwjWmeTguz1trsyl8ZP'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
+DEBUG = True
 
-ALLOWED_HOSTS = ["51.83.69.12",'*']
+ALLOWED_HOSTS = ['swiftsend.cloud','51.83.69.12','www.swiftsend.cloud']
 
 
 INSTALLED_APPS = [
@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'swiftauth.middlewares.Handle404Middleware',
 ]
 
 ROOT_URLCONF = 'Swiftsend.urls'
@@ -134,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/home/ubuntu/51.83.69.12/media')
 # MEDIA_ROOT = '/home/ubuntu/51.83.69.12/media'
 
 

@@ -611,10 +611,9 @@ def update_template_2_(request,id):
         template_instance.link = request.POST['link']
         template_instance.moreinfo = request.POST['moreinfo']
         template_instance.save()
-        messages.info(request,"Template has been Updated successfully")
-        return redirect(f'/update_template_2/{id}')
+        return redirect(f'/template2_draft')
     else:
-        return redirect(f'/update_template_2/{id}')
+        return redirect(f'/template2_draft')
     
     
 @login_required(login_url='/')  
@@ -634,10 +633,9 @@ def update_template_3_(request,id):
         template_instance.link = request.POST['link']
         template_instance.moreinfo = request.POST['moreinfo']
         template_instance.save()
-        messages.info(request,"Template has been Updated successfully")
-        return redirect(f'/update_template_3/{id}')
+        return redirect(f'/template3_draft')
     else:
-        return redirect(f'/update_template_3/{id}')
+        return redirect(f'/template3_draft')
     
 @login_required(login_url='/')  
 def update_template_4_(request,id):
@@ -652,10 +650,9 @@ def update_template_4_(request,id):
         template_instance.address = request.POST['address']
         template_instance.whatsapp = request.POST['whatsapp']
         template_instance.save()
-        messages.info(request,"Template has been Updated successfully")
-        return redirect(f'/update_template_4/{id}')
+        return redirect(f'/template4_draft')
     else:
-        return redirect(f'/update_template_4/{id}')
+        return redirect(f'/template4_draft')
     
 @login_required(login_url='/')  
 def create_template1View(request):

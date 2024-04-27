@@ -236,6 +236,9 @@ def update_profileView(request):
             admin_instance.reg = request.POST['reg']
             admin_instance.tax = request.POST['tax']
             admin_instance.tel = request.POST['tel']
+            
+            admin_instance.phone = request.POST['phone']
+
             admin_instance.whatsapp = request.POST['whatsapp']
             admin_instance.address = request.POST['address']
             admin_instance.website = request.POST['website']
@@ -249,6 +252,7 @@ def update_profileView(request):
             admin_instance.reg = request.POST['reg']
             admin_instance.tax = request.POST['tax']
             admin_instance.tel = request.POST['tel']
+            admin_instance.phone = request.POST['phone']
             admin_instance.whatsapp = request.POST['whatsapp']
             admin_instance.address = request.POST['address']
             admin_instance.website = request.POST['website']
@@ -302,10 +306,7 @@ def pagenotfoundView(request, exception):
 def my_custom_error_view(request):
     return render(request,'error/505.html',status=500)
 
-# def my_custom_permission_denied_view(request,exception):
-#     return render(request,'customer/error_message.html',status=403)
 
-# def my_custom_bad_request_view(request,exception):
-#     return render(request,'customer/error_message.html',status=400)
+
 
 

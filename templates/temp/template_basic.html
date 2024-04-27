@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Template</title>
+<meta name="description" content="At SwiftSend, we understand the importance of seamless communication for businesses of all sizes. That's why we've developed a powerful app that allows you to effortlessly send emails and SMS messages with just a few clicks, whether you're a large corporation or a small startup.">
+<meta property="og:description" content="At SwiftSend, we understand the importance of seamless communication for businesses of all sizes. That's why we've developed a powerful app that allows you to effortlessly send emails and SMS messages with just a few clicks, whether you're a large corporation or a small startup.">    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon.png' %}">
+<meta name="theme-color" content="#3063A0">
+<style>
+    /* Reset styles */
+    body, h1, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    /* Container styles */
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color:white;
+    }
+
+    /* Greeting styles */
+    .greeting {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Footer styles */
+    .footer {
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    /* Footer contact details styles */
+    .contact-details {
+        margin-top: 10px;
+    }
+
+    /* Footer copyright styles */
+    .copyright {
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Greeting -->
+    <div class="greeting">
+    <p><a href='{{admin_instance.website}}'><img src='http://51.83.69.12:8000{{admin_instance.logo.url}}' height='60px'></a> <br><br> <strong>{{greetings}} {{user_instance.first_name}} </strong> <br><br> 
+    </div>
+    <!-- Intro message -->
+    <p>{{introtext}}</p><br>
+    <p>{{message}}</p><br>
+    <!-- Body -->
+    <p>Best Regards,<br>
+     {{admin_instance.companyname}}</p>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="contact-details">
+            Email: <a href="mailto:{{admin_instance.email}}">{{admin_instance.email}}</a><br>
+            Addres: {{admin_instance.address}}<br>
+            Com Reg: {{admin_instance.reg}} | Tax No: {{admin_instance.tax}}<br>
+            Whatsapp: <a href="https://wa.me/{{admin_instance.whatsapp}}?text=Hello {{admin_instance.companyname}}">{{admin_instance.whatsapp}}</a> | Landline: <a href="tel:{{admin_instance.tel}}">{{admin_instance.tel}}<</a> | Mobile: <a href="tel:{{admin_instance.phone}}">{{admin_instance.phone}}<</a><br>
+            Website: <a href="{{admin_instance.website}}">{{admin_instance.website}}<</a>
+        </div>
+
+        <div class="copyright">
+            Copyright &copy; 2024 {{admin_instance.companyname}} All Right Reserved
+        </div>
+    </div>
+</div>
+</body>
+</html>
