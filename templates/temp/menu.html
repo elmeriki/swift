@@ -87,5 +87,17 @@
       <a class="nav-link"  href="/import_leads">IMPORT LEAD</a>
     </li>
     {% endif %}
+
+
+    {% if "/my_log" in request.path %}
+    <li class="nav-item">
+      <a class="nav-link active"   href="/my_log">SEND LOG </a>
+      {% comment %} onclick="alert('Please read the instructions below on how to import leads')" {% endcomment %}
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link"  href="/my_log">SEND LOG</a>
+    </li>
+    {% endif %}
 </ul>
 </div><!-- /.nav-scroller -->

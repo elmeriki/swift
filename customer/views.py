@@ -409,6 +409,11 @@ def template4View(request):
         return render(request,'templates/templates4.html')
     
 @login_required(login_url='/')  
+def template5View(request):
+    if request.user.is_authenticated and request.user.is_admin:
+        return render(request,'templates/templates5.html')
+    
+@login_required(login_url='/')  
 def update_template_1(request,id):
     if request.user.is_authenticated and request.user.is_admin:
         template_instance =Template1.objects.get(id=id)

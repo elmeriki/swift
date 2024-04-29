@@ -37,7 +37,8 @@ urlpatterns = [
     path('template2', views.template2View, name='template2View'),
     path('template3', views.template3View, name='template3View'),
     path('template4', views.template4View, name='template4View'),
-    
+    path('template5', views.template5View, name='template5View'),
+
     path('preview_draft_template/<int:id>', views.preview_draft_template, name='preview_draft_template'),
 
     path('update_template_1/<int:id>', views.update_template_1, name='update_template_1'),

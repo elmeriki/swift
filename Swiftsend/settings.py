@@ -19,7 +19,7 @@ API_SECRET ='tOSj12UTwL1ZBjwjWmeTguz1trsyl8ZP'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['swiftsend.cloud','51.83.69.12','www.swiftsend.cloud']
+ALLOWED_HOSTS = ['swiftsend.cloud','51.83.69.12','www.swiftsend.cloud','*']
 
 
 INSTALLED_APPS = [
@@ -79,19 +79,19 @@ DATABASES = {
     }
 }
 
-DATABASES = {  
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'swiftsend',  
-        'USER': 'root',  
-        'PASSWORD': 'meriki@12345',  
-        'HOST': 'localhost',  
-        'PORT': '3306',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
-    }  
-}  
+# DATABASES = {  
+#     'default': {  
+#         'ENGINE': 'django.db.backends.mysql',  
+#         'NAME': 'swiftsend',  
+#         'USER': 'root',  
+#         'PASSWORD': 'meriki@12345',  
+#         'HOST': 'localhost',  
+#         'PORT': '3306',  
+#         'OPTIONS': {  
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+#         }  
+#     }  
+# }  
 
 
 AUTH_USER_MODEL = 'swiftauth.User'
