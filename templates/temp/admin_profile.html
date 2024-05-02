@@ -122,24 +122,25 @@
                                 <label for="input03" class="col-md-3">Address</label> <!-- /form column -->
                                 <!-- form column -->
                                 <div class="col-md-9 mb-3">
-                                  <textarea class="form-control" name="address" id="input03">{{admin_instance.address}}</textarea> <small class="text-muted">Appears on your profile page, 300 chars max.</small>
+                                  <textarea class="form-control" name="address" id="input03">{{admin_instance.address}}</textarea> 
+                                  {% comment %} <small class="text-muted">Appears on your profile page, 300 chars max.</small> {% endcomment %}
                                 </div><!-- /form column -->
                               </div><!-- /form row -->
                               <!-- form row -->
                               <div class="form-row">
                                 <!-- form column -->
-                                <label for="input04" class="col-md-3">FAQs?</label> <!-- /form column -->
+                                <!-- /form column -->
                                 <!-- form column -->
-                                <div class="col-md-9 mb-3">
+                                {% comment %} <div class="col-md-9 mb-3">
                                   <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="input04" checked> <label class="custom-control-label" for="input04">The Company Information above will be used in your email footer or SMS</label>
                                   </div>
-                                </div><!-- /form column -->
+                                </div><!-- /form column --> {% endcomment %}
                               </div><!-- /form row -->
                               <hr>
                               <!-- .form-actions -->
                               <div class="form-actions">
-                                <button type="submit" class="btn btn-primary ml-auto">Update Profile</button>
+                                <button type="submit" class="btn btn-danger ml-auto">Update Now</button>
                               </div><!-- /.form-actions -->
                             </form><!-- /form -->
                           </div><!-- /.card-body -->

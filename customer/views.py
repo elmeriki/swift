@@ -52,14 +52,13 @@ def register_customerView(request):
         lastname=request.POST['lastname']
         cellphonenumber=str(request.POST['cellphone'])
         email=request.POST['email']
-        sacode="+27"
         my_dob_value = request.POST.get('dob', None)
         if my_dob_value:
             dob=request.POST['dob']
         if not my_dob_value:
             dob="2080-04-01"
-        if len(cellphonenumber) > 10:
-            messages.info(request,"Enter cellphone without country code")
+        if len(cellphonenumber) > 11:
+            messages.info(request,"Incompleted cell phone number")
             return redirect('/add')
         elif len(cellphonenumber) < 10:
             messages.info(request,"Incompleted cell phone number")
@@ -71,16 +70,12 @@ def register_customerView(request):
         if User.objects.filter(email=email).exists():
                 messages.info(request,"Email address has been used already")
                 return redirect('/add')
-        
-        formatedcellphone = str((cellphonenumber)[1:10])
-        formtaedcellphonenumber = str(f"{sacode}{formatedcellphone}")
         userid = random_id(length=8,character_set=string.digits)
         create_new_customer_account=User.objects.create_user(id=userid,username=cellphonenumber,first_name=firstname,last_name=lastname,password=cellphonenumber,is_customer=True,email=email,is_activation=True,phone=cellphonenumber,birth_date=dob)
         if create_new_customer_account:
             create_new_customer_account.save()
             messages.info(request,"Hi! New Account has been added successfully")
             return redirect('/add')
-
         else:
             messages.info(request,"Account could not be created successfully")
             return redirect('/add')
@@ -151,7 +146,8 @@ def usersView(request):
         page_obj = student_paginator.get_page(page_number)
         data = {
             'list_of_all_users':list_of_all_users,
-            'page_obj':page_obj
+            'page_obj':page_obj,
+            'all_users':User.objects.filter(is_customer=True).count()
         }
         return render(request,'temp/users.html',context=data)
     
@@ -165,6 +161,26 @@ def import_leadsView(request):
         }
         return render(request,'temp/lead_import.html',context=data)
     
+@login_required(login_url='/')  
+def delete_usersView(request):
+    if request.user.is_authenticated and request.user.is_admin:
+        list_of_all_users = User.objects.filter(is_customer=True).order_by('-date_joined')
+        data = {
+            'list_of_all_users':list_of_all_users,
+        }
+        return render(request,'temp/delete_users.html',context=data)
+    
+@login_required(login_url='/')  
+def delete_users_View(request):
+    if request.user.is_authenticated and request.user.is_admin:
+        delete_all_users =User.objects.filter(is_customer=True).delete()
+        if delete_all_users:
+            EmailLog.objects.all().delete()
+            Smslog.objects.all().delete()
+            messages.info(request,"All user data with sms and email log has been deleted successfully")
+            return redirect('/message')
+    else:
+        return redirect('/')
     
     
 @login_required(login_url='/')  

@@ -20,6 +20,9 @@ urlpatterns = [
     path('message', views.messageView, name='messageView'),
     path('import_lead_', views.import_leadView, name='import_leadView'),
     
+    path('delete_users', views.delete_usersView, name='delete_usersView'),
+    path('delete_users_', views.delete_users_View, name='delete_users_View'),
+
     
     path('schedule_send_sms', views.schedule_send_smsView, name='schedule_send_smsView'),
     path('schedule__send_email', views.schedule_send_emailView, name='schedule_send_emailView'),

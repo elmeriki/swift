@@ -19,7 +19,7 @@ API_SECRET ='tOSj12UTwL1ZBjwjWmeTguz1trsyl8ZP'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['swiftsend.cloud','51.83.69.12','www.swiftsend.cloud','*']
+ALLOWED_HOSTS = ['51.83.69.12','*']
 
 
 INSTALLED_APPS = [

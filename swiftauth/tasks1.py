@@ -44,9 +44,14 @@ def send_bulk_sms_task(greetings,message,companu_instance_name):
     save_email.save() 
     users = User.objects.filter(is_customer=True)
     for user in users:
-        sacode="+27"
-        formatedcellphone = str((user.phone)[1:10])
-        formtaedcellphonenumber = str(f"{sacode}{formatedcellphone}")
+        if len(user.phone) == 10:
+            sacode="+27"
+            formatedcellphone = str((user.phone)[1:10])
+            formtaedcellphonenumber = str(f"{sacode}{formatedcellphone}")
+        if len(user.phone) == 11:
+            ngcode="234"
+            formatedcellphone = str((user.phone)[1:11])
+            formtaedcellphonenumber = str(f"{ngcode}{formatedcellphone}")
         sendRequest = {
                 "messages": [{"content":f"{greetings} {user.first_name}, \n{message}\n Regards {admin_instance.companyname}", 
                               "destination":formtaedcellphonenumber}]}

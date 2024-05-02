@@ -264,39 +264,39 @@ def update_profileView(request):
     
 
 
-@login_required(login_url='/')  
-def schedule_email_view(request):
-    if request.method =="POST" and request.POST['subject'] and request.POST['greetings'] and request.POST['introtext'] and request.POST['message'] and request.POST['minutes']:
-        subject =request.POST['subject']
-        greetings =request.POST['greetings']
-        introtext =request.POST['introtext']
-        message =request.POST['message']
-        minutes =int(request.POST['minutes'])
-        companu_instance_name=request.user.username
-        # Call Celery task to send bulk emails
-        # Schedule the email task to be executed at a specific time
-        # Here, we're scheduling it to be executed 5 minutes from the current time
-        scheduled_time = timezone.now() + timezone.timedelta(minutes=minutes)
-        schedule_bulk_emails_task.apply_async(args=[subject, message, introtext,greetings,companu_instance_name],eta=scheduled_time)
-        messages.info(request,"Email Schedule task has been queued be patient......")
-        return redirect('/message')
-    else:
-        messages.info(request,"Email Schedule task could not be sent")
-        return redirect('/message')
+# @login_required(login_url='/')  
+# def schedule_email_view(request):
+#     if request.method =="POST" and request.POST['subject'] and request.POST['greetings'] and request.POST['introtext'] and request.POST['message'] and request.POST['minutes']:
+#         subject =request.POST['subject']
+#         greetings =request.POST['greetings']
+#         introtext =request.POST['introtext']
+#         message =request.POST['message']
+#         minutes =int(request.POST['minutes'])
+#         companu_instance_name=request.user.username
+#         # Call Celery task to send bulk emails
+#         # Schedule the email task to be executed at a specific time
+#         # Here, we're scheduling it to be executed 5 minutes from the current time
+#         scheduled_time = timezone.now() + timezone.timedelta(minutes=minutes)
+#         schedule_bulk_emails_task.apply_async(args=[subject, message, introtext,greetings,companu_instance_name],eta=scheduled_time)
+#         messages.info(request,"Email Schedule task has been queued be patient......")
+#         return redirect('/message')
+#     else:
+#         messages.info(request,"Email Schedule task could not be sent")
+#         return redirect('/message')
     
-@login_required(login_url='/')  
-def schedule_sms_view(request):
-    if request.method =="POST" and request.POST['greetings'] and request.POST['message']:
-        greetings =request.POST['greetings']
-        message =request.POST['message']
-        companu_instance_name=request.user.username
-        # Call Celery task to send bulk SMS
-        schedule_bulk_sms_task.delay(greetings,message,companu_instance_name)
-        messages.info(request,"SMS sending task has been queued be patient......")
-        return redirect('/message')
-    else:
-        messages.info(request,"SMS could not be sent")
-        return redirect('/message')
+# @login_required(login_url='/')  
+# def schedule_sms_view(request):
+#     if request.method =="POST" and request.POST['greetings'] and request.POST['message']:
+#         greetings =request.POST['greetings']
+#         message =request.POST['message']
+#         companu_instance_name=request.user.username
+#         # Call Celery task to send bulk SMS
+#         schedule_bulk_sms_task.delay(greetings,message,companu_instance_name)
+#         messages.info(request,"SMS sending task has been queued be patient......")
+#         return redirect('/message')
+#     else:
+#         messages.info(request,"SMS could not be sent")
+#         return redirect('/message')
     
     
     
