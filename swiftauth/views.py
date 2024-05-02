@@ -29,8 +29,6 @@ from management.models import *
 from requests.auth import HTTPBasicAuth
 from .tasks import send_bulk_emails_task
 from .tasks1 import send_bulk_sms_task
-from .schedule_email_tasks import schedule_bulk_emails_task
-from .schedule_sms_tasks import schedule_bulk_sms_task
 from .tasks2 import send_bulk_template1_emails_task
 from .tasks3 import send_bulk_template2_emails_task
 from .tasks4 import send_bulk_template3_emails_task

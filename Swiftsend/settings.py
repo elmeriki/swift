@@ -17,7 +17,7 @@ API_KEY='8ca9d831-bf94-4f52-a1f7-5ca10383f4c0'
 API_SECRET ='tOSj12UTwL1ZBjwjWmeTguz1trsyl8ZP'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['51.83.69.12','*']
 
